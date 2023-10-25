@@ -26,10 +26,11 @@ csv_exists = os.path.isfile(csv_file_path)
 coeff_range = 10
 
 for degree in range(1, 5):
+    
 
     for i in range(num_samples):
-        # if degree == 4 and i == 96:
-        #     pdb.set_trace()
+        if degree == 4 and i == 168:
+            pdb.set_trace()
         # Pause the program on the target iteration
         coeffs = np.random.uniform(-2, 2, size=degree)
         # while all(-0.1 <= coeff <= 0.1 for coeff in coeffs) or not any(-2 <= coeff <= -0.1 or 0.1 <= coeff <= 2 for coeff in coeffs):
