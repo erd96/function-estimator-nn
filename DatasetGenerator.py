@@ -26,8 +26,8 @@ csv_exists = os.path.isfile(csv_file_path)
 coeff_range = 10
 
 for degree in range(1, 5):
+    samples_generated = 0
     for i in range(num_samples):
-        samples_generated = 0
         while samples_generated < num_samples:
             try:
                 coeffs = np.random.uniform(-2, 2, size=degree)                
@@ -119,7 +119,7 @@ for degree in range(1, 5):
 
                 # Save the figure with corresponding label as the file name
                 label_str = ','.join(map(str, coeffs_rounded))  # Save the actual coefficients as a string
-                image_name = f'polynomial_degree_{degree}_{i}.png'
+                image_name = f'polynomial_degree_{degree}_{samples_generated}.png'
                 image_path = os.path.join(degree_dir, image_name)
                 plt.savefig(image_path, bbox_inches='tight', pad_inches=0)
                 plt.close()
@@ -133,8 +133,8 @@ for degree in range(1, 5):
                     label_str = ','.join(map(str, coeffs_rounded))
                     dr_ratio_str = f"{round((abs(y[0]) + abs(y[-1])) / (abs(x[0]) +abs(x[-1])), 2)}"
                     label_writer.writerow([image_path, label_str, dr_ratio_str])
-                    
-                    samples_generated += 1
+                
+                samples_generated += 1
                     
             except Exception as e:
                 print(f"An error occurred: {e}. Skipping this iteration.")
